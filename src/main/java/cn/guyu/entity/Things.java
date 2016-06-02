@@ -1,7 +1,7 @@
 package cn.guyu.entity;
 
 import java.util.List;
-//发布事件的实体
+
 public class Things {
 	private int thingid;
 	private String thingtext;
@@ -172,6 +172,6 @@ public class Things {
 		this.label = label;
 	}
 
-
+ ————————
 
 }
