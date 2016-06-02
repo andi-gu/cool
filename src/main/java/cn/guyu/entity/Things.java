@@ -1,7 +1,6 @@
 package cn.guyu.entity;
 
 import java.util.List;
-pppp
 
 public class Things {
 	private int thingid;
