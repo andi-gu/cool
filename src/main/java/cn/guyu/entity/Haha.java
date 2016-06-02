@@ -41,6 +41,6 @@ public class Haha {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+    ggg
 	
 }
