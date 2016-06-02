@@ -2,6 +2,7 @@ package cn.guyu.entity;
 
 public class Users {
 
+
 	private String username; // 昵称
 
 	private String userid; // 账号
