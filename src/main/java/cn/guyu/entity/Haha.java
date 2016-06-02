@@ -2,6 +2,7 @@ package cn.guyu.entity;
 
 public class Haha {
 
+	//段子实体
 	public Haha() {
 		super();
 		// TODO Auto-generated constructor stub
