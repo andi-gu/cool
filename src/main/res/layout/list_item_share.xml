@@ -88,15 +88,13 @@
                  android:layout_below="@id/gridview"
                  android:layout_toRightOf="@id/image_tou_share"
                  android:orientation="horizontal" >
-           
-			         
 
-				          <ImageView 
+				          <ImageView
 				    			
 				              android:id="@+id/image_zan_share"
 				              android:layout_width="19dp"
 				              android:layout_height="40dp"
-				              android:src="@drawable/like"
+				              android:src="@drawable/likeShare"
 				             />
 
 				           <TextView
