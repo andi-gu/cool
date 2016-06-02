@@ -1,5 +1,5 @@
 package cn.guyu.entity;
-
+//段子实体类
 public class Haha {
 
 	public Haha() {
@@ -41,6 +41,5 @@ public class Haha {
 	public void setImg(String img) {
 		this.img = img;
 	}
-    ggg
-	
+    
 }
