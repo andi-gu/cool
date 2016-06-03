@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,10 +19,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import cn.guyu.entity.Things;
 import cn.guyu.util.RelativeDateFormat;
 
 import com.example.fragmenttabhost.R;
+import com.guyu.fragmenttabhost.AboutCoolActivity;
+import com.guyu.fragmenttabhost.MapImageActivity;
 import com.guyu.httpPath.HttpPath;
 import com.guyu.imageXz.NoScrollGridView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -37,7 +42,7 @@ public class ListItemAdapter extends BaseAdapter {
 
 	private Context mContext;
 	private List<Things> things;
-	private Date data;
+
 	private Date date;
 	
 //	ArrayList<String> imageUrls;
@@ -63,7 +68,7 @@ public class ListItemAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) {
 			holder = new ViewHolder();
@@ -76,15 +81,44 @@ public class ListItemAdapter extends BaseAdapter {
 			holder.tv_zan =(TextView) convertView.findViewById(R.id.tv_zan_share);
 			holder.tv_data =(TextView) convertView.findViewById(R.id.tv_data_share);
 			convertView.setTag(holder);
+
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		Things ShareThing = things.get(position);
 		holder.tv_nicheng.setText(ShareThing.getUsername());
 		holder.tv_content.setText(ShareThing.getThingtext());
-		holder.tv_address.setText(ShareThing.getThingmaptext());
+
+
+
+
+		if(ShareThing.getThingmaptext()==null || ShareThing.getThingmaptext().trim().length()==0){
+			holder.tv_address.setVisibility(View.GONE);
+		}else{
+			holder.tv_address.setVisibility(View.VISIBLE);
+			holder.tv_address.setText(ShareThing.getThingmaptext());
+			final Bundle bundle=new Bundle();
+			bundle.putString("thinglat",ShareThing.getThinglat());
+			bundle.putString("thinglng",ShareThing.getThinglng());
+			bundle.putString("thingmapimg",ShareThing.getThingmapimg());
+			holder.tv_address.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent= new Intent(mContext, MapImageActivity.class);
+					intent.putExtras(bundle);
+					mContext.startActivity(intent);
+					Toast.makeText(mContext," position is:"+position,Toast.LENGTH_SHORT).show();
+
+				}
+			});
+
+		}
+
+
+
+
 		holder.tv_zan.setText(ShareThing.getThingzan());
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		try {
 			date = format.parse(ShareThing.getThingdata());
